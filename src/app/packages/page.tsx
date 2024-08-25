@@ -1,67 +1,84 @@
-"use client";  // Add this line at the top
-
-import { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography, Button, Box, Grid } from '@mui/material';
+"use client";
+import React, { useState } from 'react';
+import { Container, Grid, Pagination, Box, Typography, Paper } from '@mui/material';
+import PackageCard from '../../components/PackageCard';
+import SearchBar from '../../components/SearchBar';
 
 const packagesData = [
-  {
-    id: 1,
-    title: 'Luxury Stay in Bali',
-    price: 1200,
-    discount: 10,
-    itinerary: ['Day 1: Arrival', 'Day 2: Sightseeing', 'Day 3: Beach Day', 'Day 4: Departure'],
-    image: '/images/travel/pic1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Romantic Paris Getaway',
-    price: 2000,
-    discount: 15,
-    itinerary: ['Day 1: Eiffel Tower', 'Day 2: Louvre Museum', 'Day 3: Seine River Cruise', 'Day 4: Departure'],
-    image: '/images/travel/pic2.jpg',
-  },
-  // Add more packages here with images from pic3.jpg to pic9.jpg
+  { id: 1, title: 'Sri Lanka Tour', description: 'Explore the beauty of Sri Lanka.', price: 500, image: '/images/travel/pic1.jpg' },
+  { id: 2, title: 'Bali Getaway', description: 'Enjoy the serene beaches of Bali.', price: 700, image: '/images/travel/pic2.jpg' },
+  { id: 3, title: 'Paris Romance', description: 'Experience the romance in Paris.', price: 1200, image: '/images/travel/pic3.jpg' },
+  { id: 4, title: 'France Adventure', description: 'Discover the charm of France.', price: 1100, image: '/images/travel/pic4.jpg' },
+  { id: 5, title: 'India Heritage', description: 'Explore the rich heritage of India.', price: 300, image: '/images/travel/pic5.jpg' },
+  { id: 6, title: 'Nepal Expedition', description: 'Adventure through Nepal.', price: 400, image: '/images/travel/pic6.jpg' },
+  { id: 7, title: 'Thailand Escape', description: 'Unwind in beautiful Thailand.', price: 600, image: '/images/travel/pic7.jpg' },
+  { id: 8, title: 'Japan Highlights', description: 'Experience the culture of Japan.', price: 1300, image: '/images/travel/pic8.jpg' },
+  { id: 9, title: 'Australia Discovery', description: 'Discover the wonders of Australia.', price: 1400, image: '/images/travel/pic9.jpg' },
 ];
 
-export default function PackagesPage() {
-  const [packages, setPackages] = useState(packagesData);
+const ITEMS_PER_PAGE = 3;
+
+const PackagesPage: React.FC = () => {
+  const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredPackages = packagesData.filter(pkg =>
+    pkg.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  const paginatedPackages = filteredPackages.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
 
   return (
-    <div className="container mx-auto p-4">
-      <Typography variant="h4" className="mb-6 text-center font-bold">
-        Explore Our Exclusive 4-Star Packages
+    <Container sx={{ padding: '20px 16px' }}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        sx={{
+          fontSize: { xs: '1.8rem', sm: '2.4rem' }, // Responsive font size
+          fontWeight: 'bold',                       // Make the text bold
+          color: 'primary.main',                    // Use theme color
+          paddingTop: '20px',                       // Add padding at the top
+          marginBottom: '30px',                     // Add margin at the bottom for spacing
+          textTransform: 'uppercase',               // Capitalize all letters for a premium feel
+        }}
+      >
+        Our Premium Packages
       </Typography>
-
-      <Grid container spacing={4}>
-        {packages.map((pkg) => (
-          <Grid item xs={12} md={6} key={pkg.id}>
-            <Card className="flex flex-col md:flex-row rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <CardMedia
-                component="img"
-                image={pkg.image}
-                alt={pkg.title}
-                className="w-full md:w-1/2 h-64 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
-              />
-              <CardContent className="w-full md:w-1/2 flex flex-col justify-between">
-                <Box>
-                  <Typography variant="h6" component="div" className="font-semibold">
-                    {pkg.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" className="mt-2">
-                    Price: ${pkg.price} <span className="line-through ml-2 text-gray-500">${pkg.price + (pkg.price * pkg.discount) / 100}</span>
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" className="mt-2">
-                    {pkg.itinerary.join(' • ')}
-                  </Typography>
-                </Box>
-                <Button variant="contained" color="primary" className="mt-4 self-start">
-                  Book Now
-                </Button>
-              </CardContent>
-            </Card>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <Grid container spacing={4} justifyContent="center">
+        {paginatedPackages.map(pkg => (
+          <Grid item key={pkg.id} xs={12} sm={6} md={4}>
+            <PackageCard {...pkg} />
           </Grid>
         ))}
       </Grid>
-    </div>
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Pagination
+          count={Math.ceil(filteredPackages.length / ITEMS_PER_PAGE)}
+          page={page}
+          onChange={handlePageChange}
+          color="primary"
+          variant="outlined"
+          shape="rounded"
+          size="large"
+          sx={{
+            '& .MuiPaginationItem-root': {
+              padding: '8px 12px',
+              fontSize: '1rem',
+            },
+          }}
+        />
+      </Box>
+    </Container>
   );
-}
+};
+
+export default PackagesPage;

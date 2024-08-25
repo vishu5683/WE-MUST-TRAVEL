@@ -47,7 +47,7 @@ export default function ResponsiveNavbar() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "#f8f8f8",
         color: "#333",
         boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
         transition: "background-color 0.3s ease",
@@ -71,8 +71,8 @@ export default function ResponsiveNavbar() {
             <Image
               src="/images/brand.webp"
               alt="Brand Logo"
-              width={300}
-              height={50}
+              width={isMobile ? 150 : 300} // Smaller logo for mobile
+              height={isMobile ? 30 : 50}
               style={{ marginRight: "8px" }}
             />
           </div>
@@ -84,6 +84,7 @@ export default function ResponsiveNavbar() {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
+              sx={{ color: "#ff5722" }} // Orange theme color for mobile menu button
             >
               <MenuIcon />
             </IconButton>
@@ -91,6 +92,12 @@ export default function ResponsiveNavbar() {
               anchor="left"
               open={drawerOpen}
               onClose={toggleDrawer(false)}
+              sx={{
+                "& .MuiDrawer-paper": {
+                  backgroundColor: "#ff5722", // Orange background for drawer
+                  color: "#fff",
+                },
+              }}
             >
               <List sx={{ width: 250 }}>
                 {menuItems.map((item, index) => (
@@ -103,10 +110,9 @@ export default function ResponsiveNavbar() {
                       }}
                       sx={{
                         padding: "16px",
-                        color: "#333",
+                        color: "#fff", // White text inside drawer
                         "&:hover": {
-                          backgroundColor: "#ff5722",
-                          color: "#fff",
+                          backgroundColor: "#e64a19", // Darker orange on hover
                         },
                       }}
                     >
