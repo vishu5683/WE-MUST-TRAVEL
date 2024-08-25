@@ -7,7 +7,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Tabs,
   Tab,
   Drawer,
@@ -18,7 +17,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // MUI icon for profile
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function ResponsiveNavbar() {
   const theme = useTheme();
@@ -41,7 +40,7 @@ export default function ResponsiveNavbar() {
     { label: "Packages", href: "/packages" },
     { label: "About Us", href: "/about" },
     { label: "Login", href: "/login" },
-    { label: <AccountCircleIcon />, href: "/profile" }, // Use icon for profile
+    { label: <AccountCircleIcon />, href: "/profile" },
   ];
 
   return (
@@ -67,30 +66,15 @@ export default function ResponsiveNavbar() {
               alignItems: "center",
               cursor: "pointer",
               transition: "transform 0.3s ease",
-              "&:hover": {
-                transform: "scale(1.1)",
-              },
             }}
           >
-            {/* Your Picture and Logo */}
             <Image
               src="/images/brand.webp"
               alt="Brand Logo"
-              width={300} // Adjust size as needed
+              width={300}
               height={50}
               style={{ marginRight: "8px" }}
             />
-
-            {/* Company Name - Uncomment to use */}
-            {/* <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                color: "#ff5722",
-              }}
-            >
-              We Must Travel
-            </Typography> */}
           </div>
         </Link>
         {isMobile ? (
@@ -154,9 +138,18 @@ export default function ResponsiveNavbar() {
             }}
           >
             {menuItems.map((item, index) => (
-              <Link key={index} href={item.href} passHref>
-                <Tab label={item.label} />
-              </Link>
+              <Tab
+                key={index}
+                label={item.label}
+                component={Link}
+                href={item.href}
+                sx={{
+                  ...(value === index && {
+                    color: "#ff5722",
+                    fontWeight: "bold",
+                  }),
+                }}
+              />
             ))}
           </Tabs>
         )}

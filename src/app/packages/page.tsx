@@ -1,39 +1,67 @@
-import React from 'react';
-import { Divider, Typography, List, ListItem, ListItemText } from '@mui/material';
+"use client";  // Add this line at the top
 
-const packages = [
-  { id: 1, image: '/images/travel/pic1.jpg', price: '$999', description: '7-day adventure in Bali.', itinerary: ['Day 1: Arrival', 'Day 2: Sightseeing', 'Day 3: Beach Day'] },
-  { id: 2, image: '/images/travel/pic2.jpg', price: '$1299', description: 'Luxury stay in Maldives.', itinerary: ['Day 1: Resort Check-In', 'Day 2: Spa and Relax', 'Day 3: Water Sports'] },
-  { id: 3, image: '/images/travel/pic3.jpg', price: '$899', description: 'Cultural tour in Japan.', itinerary: ['Day 1: Tokyo', 'Day 2: Kyoto', 'Day 3: Osaka'] },
-  // Add more packages as needed
+import { useState } from 'react';
+import { Card, CardContent, CardMedia, Typography, Button, Box, Grid } from '@mui/material';
+
+const packagesData = [
+  {
+    id: 1,
+    title: 'Luxury Stay in Bali',
+    price: 1200,
+    discount: 10,
+    itinerary: ['Day 1: Arrival', 'Day 2: Sightseeing', 'Day 3: Beach Day', 'Day 4: Departure'],
+    image: '/images/travel/pic1.jpg',
+  },
+  {
+    id: 2,
+    title: 'Romantic Paris Getaway',
+    price: 2000,
+    discount: 15,
+    itinerary: ['Day 1: Eiffel Tower', 'Day 2: Louvre Museum', 'Day 3: Seine River Cruise', 'Day 4: Departure'],
+    image: '/images/travel/pic2.jpg',
+  },
+  // Add more packages here with images from pic3.jpg to pic9.jpg
 ];
 
-const PackagesPage: React.FC = () => {
+export default function PackagesPage() {
+  const [packages, setPackages] = useState(packagesData);
+
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="flex flex-col gap-6">
+    <div className="container mx-auto p-4">
+      <Typography variant="h4" className="mb-6 text-center font-bold">
+        Explore Our Exclusive 4-Star Packages
+      </Typography>
+
+      <Grid container spacing={4}>
         {packages.map((pkg) => (
-          <div key={pkg.id} className="flex bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="flex-none w-1/2 p-4">
-              <img src={pkg.image} alt={`Package ${pkg.id}`} className="w-full h-72 object-cover rounded-lg" />
-            </div>
-            <div className="flex-grow p-4">
-              <Typography variant="h6" className="font-bold mb-2">{pkg.price}</Typography>
-              <Divider className="my-2" />
-              <Typography variant="body1" className="mb-2">{pkg.description}</Typography>
-              <List>
-                {pkg.itinerary.map((item, index) => (
-                  <ListItem key={index} className="p-0">
-                    <ListItemText primary={`• ${item}`} />
-                  </ListItem>
-                ))}
-              </List>
-            </div>
-          </div>
+          <Grid item xs={12} md={6} key={pkg.id}>
+            <Card className="flex flex-col md:flex-row rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <CardMedia
+                component="img"
+                image={pkg.image}
+                alt={pkg.title}
+                className="w-full md:w-1/2 h-64 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+              />
+              <CardContent className="w-full md:w-1/2 flex flex-col justify-between">
+                <Box>
+                  <Typography variant="h6" component="div" className="font-semibold">
+                    {pkg.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" className="mt-2">
+                    Price: ${pkg.price} <span className="line-through ml-2 text-gray-500">${pkg.price + (pkg.price * pkg.discount) / 100}</span>
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" className="mt-2">
+                    {pkg.itinerary.join(' • ')}
+                  </Typography>
+                </Box>
+                <Button variant="contained" color="primary" className="mt-4 self-start">
+                  Book Now
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </div>
   );
-};
-
-export default PackagesPage;
+}
