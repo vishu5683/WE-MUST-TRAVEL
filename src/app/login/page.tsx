@@ -13,6 +13,7 @@ import {
   CardContent,
   InputAdornment,
   Fade,
+  Backdrop,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
@@ -28,32 +29,48 @@ export default function LoginPage() {
     // Simulate a login delay for the transition effect
     setTimeout(() => {
       router.push('/profile');
-    }, 2000);
+    }, 500);
   };
 
   return (
     <Fade in={!loading} timeout={1000}>
-      <Box sx={{ position: 'relative', height: '100vh', display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ position: 'relative', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <VideoBackground src="/videos/login-bg.mp4" />
-
-        <Container>
+        <Backdrop
+          open={true}
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1,
+          }}
+        />
+        <Container sx={{ position: 'relative', zIndex: 2 }}>
           <Grid container justifyContent="center">
             <Grid item xs={12} md={6}>
               <Card
                 sx={{
-                  maxWidth: 400,
+                  maxWidth: 450,
                   margin: 'auto',
                   padding: 4,
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
-                  borderRadius: 2,
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 30%, rgba(240,240,240,0.7) 90%)',
+                  boxShadow: '0 12px 24px rgba(0,0,0,0.3)',
+                  borderRadius: 3,
                 }}
               >
                 <CardContent>
-                  <Typography variant="h4" align="center" gutterBottom>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    gutterBottom
+                    sx={{ fontWeight: 700, fontFamily: "'Roboto Slab', serif" }}
+                  >
                     Explore with We Must Travel
                   </Typography>
-                  <Typography variant="body1" align="center" sx={{ mb: 4 }}>
+                  <Typography variant="body1" align="center" sx={{ mb: 4, fontSize: 18 }}>
                     Please login to manage your account.
                   </Typography>
                   <TextField
@@ -68,6 +85,17 @@ export default function LoginPage() {
                           <PersonIcon />
                         </InputAdornment>
                       ),
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: 2,
+                      },
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#ccc',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'primary.main',
+                      },
                     }}
                   />
                   <TextField
@@ -84,19 +112,35 @@ export default function LoginPage() {
                         </InputAdornment>
                       ),
                     }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: 2,
+                      },
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#ccc',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'primary.main',
+                      },
+                    }}
                   />
                   <Button
                     variant="contained"
                     fullWidth
                     sx={{
-                      mt: 2,
-                      backgroundColor: 'primary.main',
+                      mt: 3,
+                      background: 'linear-gradient(90deg, rgba(33,150,243,1) 0%, rgba(3,169,244,1) 100%)',
                       color: '#fff',
                       '&:hover': {
-                        backgroundColor: 'primary.dark',
+                        background: 'linear-gradient(90deg, rgba(3,169,244,1) 0%, rgba(33,150,243,1) 100%)',
                       },
-                      padding: 1.5,
-                      borderRadius: 1,
+                      padding: 1.75,
+                      borderRadius: 2,
+                      fontSize: 18,
+                      transition: 'transform 0.2s ease-in-out',
+                      '&:active': {
+                        transform: 'scale(0.98)',
+                      },
                     }}
                     onClick={handleLogin}
                   >

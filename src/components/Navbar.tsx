@@ -47,7 +47,7 @@ export default function ResponsiveNavbar() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#f8f8f8",
+        backgroundColor: "#f0f0f0", // Neutral background color
         color: "#333",
         boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
         transition: "background-color 0.3s ease",
@@ -84,7 +84,7 @@ export default function ResponsiveNavbar() {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
-              sx={{ color: "#ff5722" }} // Orange theme color for mobile menu button
+              sx={{ color: "#1976d2" }} // Professional blue theme color for mobile menu button
             >
               <MenuIcon />
             </IconButton>
@@ -94,7 +94,7 @@ export default function ResponsiveNavbar() {
               onClose={toggleDrawer(false)}
               sx={{
                 "& .MuiDrawer-paper": {
-                  backgroundColor: "#ff5722", // Orange background for drawer
+                  backgroundColor: "#1976d2", // Blue background for drawer
                   color: "#fff",
                 },
               }}
@@ -112,7 +112,7 @@ export default function ResponsiveNavbar() {
                         padding: "16px",
                         color: "#fff", // White text inside drawer
                         "&:hover": {
-                          backgroundColor: "#e64a19", // Darker orange on hover
+                          backgroundColor: "#1565c0", // Darker blue on hover
                         },
                       }}
                     >
@@ -134,11 +134,11 @@ export default function ResponsiveNavbar() {
                 marginLeft: "32px",
                 transition: "color 0.3s ease",
                 "&:hover": {
-                  color: "#ff5722",
+                  color: "#1976d2",
                 },
               },
               "& .MuiTabs-indicator": {
-                backgroundColor: "#ff5722",
+                backgroundColor: "#1976d2",
                 height: "3px",
               },
             }}
@@ -151,7 +151,7 @@ export default function ResponsiveNavbar() {
                 href={item.href}
                 sx={{
                   ...(value === index && {
-                    color: "#ff5722",
+                    color: "#1976d2", // Highlight active tab with the blue color
                     fontWeight: "bold",
                   }),
                 }}
