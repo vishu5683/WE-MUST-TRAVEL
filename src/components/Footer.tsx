@@ -30,12 +30,13 @@ export default function Footer() {
               '&::after': {
                 content: '""',
                 display: 'block',
-                width: '60px',
+                width: { xs: '80px', sm: '60px' }, // Adjust underline width for mobile
                 height: '3px',
                 backgroundColor: '#e0e0e0',
                 position: 'absolute',
                 bottom: '-10px',
-                left: 0,
+                left: { xs: '50%', sm: 0 }, // Center underline on mobile
+                transform: { xs: 'translateX(-50%)', sm: 'none' },
               },
             }}
           >
@@ -79,12 +80,13 @@ export default function Footer() {
               '&::after': {
                 content: '""',
                 display: 'block',
-                width: '60px',
+                width: { xs: '80px', sm: '60px' }, // Adjust underline width for mobile
                 height: '3px',
                 backgroundColor: '#e0e0e0',
                 position: 'absolute',
                 bottom: '-10px',
-                left: 0,
+                left: { xs: '50%', sm: 0 }, // Center underline on mobile
+                transform: { xs: 'translateX(-50%)', sm: 'none' },
               },
             }}
           >
