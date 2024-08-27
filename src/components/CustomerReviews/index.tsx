@@ -77,58 +77,56 @@ export default function CustomerReviews() {
         </Typography>
 
         <Grid container spacing={4}>
-          {reviews.map((review, index) => (
+          {reviews.map((review) => (
             <Grid item xs={12} sm={6} md={4} key={review.id}>
-              <Fade in timeout={index * 500}>
-                <Card
+              <Card
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  p: 3,
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  borderRadius: '16px',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
+                  },
+                }}
+              >
+                <Avatar
+                  src={review.image}
+                  alt={review.name}
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    p: 3,
-                    background: 'rgba(255, 255, 255, 0.8)',
-                    backdropFilter: 'blur(10px)',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                    borderRadius: '16px',
-                    transition: 'all 0.3s ease-in-out',
+                    width: 80,
+                    height: 80,
+                    mb: 2,
+                    border: `2px solid ${teal[500]}`,
+                    transition: 'transform 0.3s ease-in-out',
                     '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
+                      transform: 'scale(1.1)',
                     },
                   }}
-                >
-                  <Avatar
-                    src={review.image}
-                    alt={review.name}
-                    sx={{
-                      width: 80,
-                      height: 80,
-                      mb: 2,
-                      border: `2px solid ${teal[500]}`,
-                      transition: 'transform 0.3s ease-in-out',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                      },
-                    }}
-                  />
-                  <CardContent sx={{ textAlign: 'center' }}>
-                    <Typography variant="h6" sx={{ fontWeight: 600, color: teal[900] }}>
-                      {review.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: grey[700], mt: 1 }}>
-                      {review.review}
-                    </Typography>
-                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                      {[...Array(5)].map((_, i) => (
-                        <StarIcon
-                          key={i}
-                          sx={{ color: i < review.rating ? teal[700] : grey[400] }}
-                        />
-                      ))}
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Fade>
+                />
+                <CardContent sx={{ textAlign: 'center' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600, color: teal[900] }}>
+                    {review.name}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: grey[700], mt: 1 }}>
+                    {review.review}
+                  </Typography>
+                  <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        sx={{ color: i < review.rating ? teal[700] : grey[400] }}
+                      />
+                    ))}
+                  </Box>
+                </CardContent>
+              </Card>
             </Grid>
           ))}
         </Grid>
