@@ -12,22 +12,33 @@ const TravelInquiryForm: React.FC = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="travel-inquiry-section" style={{ padding: '2rem', backgroundColor: '#001f3f' }}>
+      <div
+        className="travel-inquiry-section"
+        style={{
+          padding: '2rem',
+          backgroundColor: '#001f3f',
+          background: 'linear-gradient(135deg, #001f3f, #0056b3)',
+          borderRadius: '15px',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+          margin: 'auto',
+        }}
+      >
         <Typography
           variant="h4"
           gutterBottom
           style={{
             color: '#ffffff',
-            fontSize: '2rem',
+            fontSize: '2.5rem',
             fontWeight: 'bold',
             textAlign: 'center',
-            marginBottom: '1.5rem',
-            letterSpacing: '0.05em',
+            marginBottom: '2rem',
+            letterSpacing: '0.08em',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
           }}
         >
           Plan Your Travel
         </Typography>
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12} sm={6} md={3}>
             <TextField
               label="Search Destination*"
@@ -35,18 +46,32 @@ const TravelInquiryForm: React.FC = () => {
               variant="outlined"
               fullWidth
               InputProps={{
-                style: { backgroundColor: '#ffffff', borderRadius: '8px' },
+                style: {
+                  backgroundColor: '#ffffff',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                },
+              }}
+              InputLabelProps={{
+                style: { color: '#001f3f', fontWeight: 'bold' },
               }}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <TextField
-              label="Pax Number*"
+              label="Number Of Pax *"
               placeholder="No. of People"
               variant="outlined"
               fullWidth
               InputProps={{
-                style: { backgroundColor: '#ffffff', borderRadius: '8px' },
+                style: {
+                  backgroundColor: '#ffffff',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                },
+              }}
+              InputLabelProps={{
+                style: { color: '#001f3f', fontWeight: 'bold' },
               }}
             />
           </Grid>
@@ -60,7 +85,14 @@ const TravelInquiryForm: React.FC = () => {
                   placeholder: "dd-mm-yyyy",
                   fullWidth: true,
                   InputProps: {
-                    style: { backgroundColor: '#ffffff', borderRadius: '8px' },
+                    style: {
+                      backgroundColor: '#ffffff',
+                      borderRadius: '12px',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    },
+                  },
+                  InputLabelProps: {
+                    style: { color: '#001f3f', fontWeight: 'bold' },
                   },
                 },
               }}
@@ -76,24 +108,40 @@ const TravelInquiryForm: React.FC = () => {
                   placeholder: "dd-mm-yyyy",
                   fullWidth: true,
                   InputProps: {
-                    style: { backgroundColor: '#ffffff', borderRadius: '8px' },
+                    style: {
+                      backgroundColor: '#ffffff',
+                      borderRadius: '12px',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    },
+                  },
+                  InputLabelProps: {
+                    style: { color: '#001f3f', fontWeight: 'bold' },
                   },
                 },
               }}
             />
           </Grid>
         </Grid>
-        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <Button
             variant="contained"
-            color="primary"
             style={{
               backgroundColor: '#007bff',
               color: '#ffffff',
-              padding: '0.75rem 2rem',
-              borderRadius: '8px',
-              fontSize: '1rem',
+              padding: '0.75rem 2.5rem',
+              borderRadius: '12px',
+              fontSize: '1.1rem',
+              boxShadow: '0 4px 12px rgba(0, 123, 255, 0.3)',
+              transition: 'all 0.3s ease',
             }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.boxShadow =
+                '0 8px 24px rgba(0, 123, 255, 0.4)')
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.boxShadow =
+                '0 4px 12px rgba(0, 123, 255, 0.3)')
+            }
           >
             Submit Query
           </Button>

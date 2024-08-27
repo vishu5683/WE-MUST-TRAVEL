@@ -13,8 +13,8 @@ export default function HeroSection() {
     let currentVideo = 0;
     const videos = [
       '/videos/banner1.mp4',
-      '/videos/banner2.mp4',
-      
+      '/videos/banner6.mp4',
+      '/videos/banner5.mp4',
     ];
 
     const playNextVideo = () => {

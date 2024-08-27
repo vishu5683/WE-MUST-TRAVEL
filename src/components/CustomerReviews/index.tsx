@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Typography, Grid, Card, CardContent, Avatar, Box, Fade, Link, IconButton } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
+
 import GoogleIcon from '@mui/icons-material/Google';
 import { teal, grey } from '@mui/material/colors';
+import ReviewCard from './ReviewCard';
 
 const reviews = [
   {
@@ -54,9 +55,10 @@ export default function CustomerReviews() {
     <Box
       id="customer-reviews"
       sx={{
-        background: `linear-gradient(to bottom, ${grey[100]}, ${grey[200]})`,
+        background: `linear-gradient(to bottom, ${teal[50]}, ${grey[100]})`,
         py: 8,
         scrollBehavior: 'smooth',
+        transition: 'all 0.3s ease-in-out',
       }}
     >
       <Container maxWidth="lg">
@@ -64,14 +66,24 @@ export default function CustomerReviews() {
           variant="h4"
           align="center"
           gutterBottom
-          sx={{ fontWeight: 700, color: teal[700], mb: 2 }}
+          sx={{
+            fontWeight: 700,
+            color: teal[800],
+            mb: 2,
+            textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
+            animation: 'fadeIn 1.2s ease-in-out',
+          }}
         >
           What Our Customers Say
         </Typography>
         <Typography
           variant="subtitle1"
           align="center"
-          sx={{ color: grey[600], mb: 6 }}
+          sx={{
+            color: grey[600],
+            mb: 6,
+            animation: 'fadeIn 1.5s ease-in-out',
+          }}
         >
           Hear from our satisfied travelers
         </Typography>
@@ -79,54 +91,12 @@ export default function CustomerReviews() {
         <Grid container spacing={4}>
           {reviews.map((review) => (
             <Grid item xs={12} sm={6} md={4} key={review.id}>
-              <Card
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  p: 3,
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(10px)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                  borderRadius: '16px',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
-                  },
-                }}
-              >
-                <Avatar
-                  src={review.image}
-                  alt={review.name}
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    mb: 2,
-                    border: `2px solid ${teal[500]}`,
-                    transition: 'transform 0.3s ease-in-out',
-                    '&:hover': {
-                      transform: 'scale(1.1)',
-                    },
-                  }}
-                />
-                <CardContent sx={{ textAlign: 'center' }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: teal[900] }}>
-                    {review.name}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: grey[700], mt: 1 }}>
-                    {review.review}
-                  </Typography>
-                  <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                    {[...Array(5)].map((_, i) => (
-                      <StarIcon
-                        key={i}
-                        sx={{ color: i < review.rating ? teal[700] : grey[400] }}
-                      />
-                    ))}
-                  </Box>
-                </CardContent>
-              </Card>
+              <ReviewCard
+                name={review.name}
+                review={review.review}
+                image={review.image}
+                rating={review.rating}
+              />
             </Grid>
           ))}
         </Grid>
@@ -135,22 +105,31 @@ export default function CustomerReviews() {
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            mt: 4,
+            mt: 6,
             mb: 2,
+            animation: 'fadeIn 1.8s ease-in-out',
           }}
         >
           <Link
-            href="https://www.google.com/search?q=we+must+travel&sca_esv=c7a0e9feb6fce5cb&sca_upv=1&rlz=1C1YTUH_enIN1082IN1082&sxsrf=ADLYWIJ56CoOHpEpYrAvEBTthzj69dAG-A%3A1724739534903&ei=zm_NZrznNrTM1e8PtNTogAM&ved=0ahUKEwi8hru6w5SIAxU0ZvUHHTQqGjAQ4dUDCA8&uact=5&oq=we+must+travel&gs_lp=Egxnd3Mtd2l6LXNlcnAiDndlIG11c3QgdHJhdmVsMgoQIxiABBgnGIoFMgoQIxiABBgnGIoFMhMQLhiABBhDGMcBGIoFGI4FGK8BMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIiEC4YgAQYQxjHARiKBRiOBRivARiXBRjcBBjeBBjgBNgBAUjwFVDCCVjRE3ABeACQAQCYAegBoAGlA6oBBTAuMS4xuAEDyAEA-AEBmAIEoALnCMICDhAAGIAEGLADGIYDGIoFwgILEAAYgAQYsAMYogSYAwCIBgGQBgi6BgYIARABGBSSBwkxLjAuMi41LTGgB8UX&sclient=gws-wiz-serp#lrd=0x390ce1a20e94f69d:0x12ac4f9fcc835276,1,,,"
+            href="https://www.google.com/search?q=we+must+travel"
             target="_blank"
             sx={{
               display: 'flex',
               alignItems: 'center',
-              color: teal[700],
+              color: 'white',
+              backgroundColor: teal[700],
               textDecoration: 'none',
               fontWeight: 600,
               fontSize: '1rem',
+              px: 3,
+              py: 1.5,
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.3s ease-in-out',
               '&:hover': {
-                textDecoration: 'underline',
+                backgroundColor: teal[800],
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)',
+                transform: 'translateY(-2px)',
               },
             }}
           >
