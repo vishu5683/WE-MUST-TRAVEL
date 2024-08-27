@@ -1,4 +1,5 @@
 import CallToAction from '../components/CallToAction';
+import CustomerReviews from '../components/CustomerReviews';
 import HeroSection from '../components/HeroSection';
 import Locations from '../components/Locations';
 import Newsletter from '../components/Newsletter';
@@ -13,7 +14,7 @@ export default function HomePage() {
       {/* <TourSearch/> */}
       <ServicesSection/>
       <Locations/>
-      {/* <Testimonials/> */}
+        <CustomerReviews/>
       <CallToAction />
       <Newsletter/>
     </main>
