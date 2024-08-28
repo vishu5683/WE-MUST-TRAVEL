@@ -53,14 +53,15 @@ const reviews = [
 export default function CustomerReviews() {
   return (
     <Box
-      id="customer-reviews"
-      sx={{
-        background: `linear-gradient(to bottom, ${teal[50]}, ${grey[100]})`,
-        py: 8,
-        scrollBehavior: 'smooth',
-        transition: 'all 0.3s ease-in-out',
-      }}
-    >
+    id="customer-reviews"
+    sx={{
+    
+      py: 8,
+      scrollBehavior: 'smooth',
+      transition: 'all 0.3s ease-in-out',
+    }}
+  >
+  
       <Container maxWidth="lg">
         <Typography
           variant="h4"

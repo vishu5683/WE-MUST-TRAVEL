@@ -7,24 +7,28 @@ interface PackageCardProps {
   description: string;
   price: number;
   image: string;
+  duration: string;
+  highlights: string;
 }
 
-const PackageCard: React.FC<PackageCardProps> = ({ title, description, price, image }) => {
+const PackageCard: React.FC<PackageCardProps> = ({ title, description, price, image, duration, highlights }) => {
   return (
     <Card
       sx={{
-        borderRadius: '16px',            // Rounded corners
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
-        transition: 'transform 0.3s ease-in-out',  // Smooth hover effect
+        borderRadius: '16px',
+        boxShadow: '0 6px 25px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.3s ease-in-out',
         '&:hover': {
-          transform: 'translateY(-8px)', // Slight lift on hover
-          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.2)', // Enhanced shadow on hover
+          transform: 'translateY(-10px)',
+          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
         },
+        maxWidth: 350,
+        margin: 'auto',
       }}
     >
       <CardMedia
         component="img"
-        height="200"
+        height="220"
         image={image}
         alt={title}
         sx={{
@@ -35,26 +39,34 @@ const PackageCard: React.FC<PackageCardProps> = ({ title, description, price, im
       />
       <CardContent>
         <Typography
-          variant="h6"
+          variant="h5"
           component="div"
           sx={{
             fontWeight: 'bold',
             color: 'text.primary',
-            marginBottom: '8px',
+            marginBottom: '12px',
           }}
         >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{ marginBottom: '12px' }}>
           {description}
         </Typography>
+        <Box sx={{ marginBottom: '12px' }}>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Duration:</strong> {duration}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Highlights:</strong> {highlights}
+          </Typography>
+        </Box>
         <Typography
           variant="body1"
           color="primary"
           sx={{
             marginTop: '16px',
             fontWeight: 'bold',
-            fontSize: '1.2rem', // Larger price text for emphasis
+            fontSize: '1.2rem',
           }}
         >
           ${price} per person
