@@ -4,6 +4,15 @@ import { Container, Grid, Pagination, Box, Typography, Modal, Button } from '@mu
 import HotelCard from '../../components/HotelCard';
 import SearchBar from '../../components/SearchBar';
 
+type Hotel = {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  image: string;
+  description?: string;
+};
+
 const hotelsData = [
   { id: 1, name: 'The Oberoi, Mumbai', location: 'Mumbai, Maharashtra', price: 12000, image: '/images/hotels/hotel1.jpg' },
   { id: 2, name: 'Taj Mahal Palace, Mumbai', location: 'Mumbai, Maharashtra', price: 15000, image: '/images/hotels/hotel2.jpg' },
@@ -42,7 +51,7 @@ const ITEMS_PER_PAGE = 6;
 const HotelsPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -90,14 +99,15 @@ const HotelsPage: React.FC = () => {
         />
       </Box>
 
-      {/* View Details Modal */}
       {selectedHotel && (
         <Modal open={!!selectedHotel} onClose={() => setSelectedHotel(null)}>
           <Box sx={{ ...modalStyle }}>
             <Typography variant="h6" component="h2">
               {selectedHotel.name}
             </Typography>
-            <Typography sx={{ mt: 2 }}>{selectedHotel.description}</Typography>
+            <Typography sx={{ mt: 2 }}>
+              {selectedHotel.description ? selectedHotel.description : 'No description available'}
+            </Typography>
             <Button onClick={() => setSelectedHotel(null)} sx={{ mt: 3 }} variant="contained">
               Close
             </Button>
