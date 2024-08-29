@@ -43,27 +43,28 @@ export default function Footer() {
             Terms & Policies
           </Typography>
           <Box component="ul" sx={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            <li>
-              <Link href="/terms" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
-                Terms & Conditions
-              </Link>
-            </li>
-            <li>
-              <Link href="/refunds" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
-                Refunds/Cancellations
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacy" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/career" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
-                Career
-              </Link>
-            </li>
-          </Box>
+  <li>
+    <Link href="/policies/terms" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
+      Terms & Conditions
+    </Link>
+  </li>
+  <li>
+    <Link href="/policies/refunds" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
+      Refunds/Cancellations
+    </Link>
+  </li>
+  <li>
+    <Link href="/policies/privacy" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
+      Privacy Policy
+    </Link>
+  </li>
+  <li>
+    <Link href="/policies/career" sx={{ color: '#ccc', textDecoration: 'none', display: 'block', padding: '8px 0', '&:hover': { color: '#fff' } }}>
+      Career
+    </Link>
+  </li>
+</Box>
+
         </Grid>
 
         {/* Connect Section */}

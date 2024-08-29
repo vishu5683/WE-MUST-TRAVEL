@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Typography, Grid } from '@mui/material';
-import { Flight, Restaurant, DirectionsBus, LocalHotel, Bed } from '@mui/icons-material';
+import { Flight, DirectionsBus, Bed, EmojiPeople } from '@mui/icons-material'; // Imported EmojiPeople icon for Happy Clients
 
 export default function ServicesSection() {
   return (
@@ -46,15 +46,15 @@ export default function ServicesSection() {
           </Box>
         </Grid>
 
-        {/* Food Services */}
+        {/* Happy Clients */}
         <Grid item xs={12} sm={6} md={3}>
           <Box className="container-box">
-            <Restaurant sx={{ fontSize: 100 }} />
+            <EmojiPeople sx={{ fontSize: 100 }} />
             <Typography variant="h4" sx={{ fontSize: '20px', marginBottom: '5px', fontWeight: 550 }}>
-              Food Services
+              Happy Clients
             </Typography>
             <Typography variant="body1" sx={{ fontSize: '16px', color: '#808080' }}>
-              Catering
+              Satisfaction Guaranteed
             </Typography>
           </Box>
         </Grid>
@@ -75,7 +75,7 @@ export default function ServicesSection() {
         {/* Hotel Services */}
         <Grid item xs={12} sm={6} md={3}>
           <Box className="container-box">
-            <Bed sx={{ fontSize: 100 }} /> {/* Alternative icon used here */}
+            <Bed sx={{ fontSize: 100 }} />
             <Typography variant="h4" sx={{ fontSize: '20px', marginBottom: '5px', fontWeight: 550 }}>
               Hotel Services
             </Typography>
