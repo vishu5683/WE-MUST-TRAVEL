@@ -1,1 +1,43 @@
-# We are working on this soon.
+import React from 'react';
+
+export default function CancellationAndRefundPolicy() {
+  return (
+    <div>
+      <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#3f51b5', textAlign: 'center', marginBottom: '1rem' }}>
+        Cancellation & Refund Policy
+      </h1>
+
+      <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#3f51b5', marginBottom: '1rem', marginTop: '2rem' }}>
+        Cancellation Policy
+      </h2>
+
+      <p style={{ fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+        If you have to cancel your tour or some services, please let us know in writing and the following cancellation fees will apply:
+      </p>
+
+      <ul style={{ fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '1rem', listStyleType: 'none', paddingLeft: '0' }}>
+        <li style={{ marginBottom: '0.5rem' }}>
+          – Cancellation in arrangements till 35 days prior to start of services: <strong>10% charges will be applicable of the total tour cost</strong>
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          – Cancellation in arrangements from 35 days till 15 days prior to start of services: <strong>50% charges will be applicable of the total tour cost</strong>
+        </li>
+        <li style={{ marginBottom: '0.5rem' }}>
+          – Cancellation in arrangements from 15 days till start of services: <strong>100% charges will be applicable of the total tour cost</strong>
+        </li>
+      </ul>
+
+      <p style={{ fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+        Cancellation fees for certain products may vary – WMT will advise you on those products at the time of confirmation. We regret that cancellation charges cannot be waived off. No refunds for unused arrangements after our services begin. Our overseas operators or their employees are not authorized by the Company to commit any refund or any such matters.
+      </p>
+
+      <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#3f51b5', marginBottom: '1rem', marginTop: '2rem' }}>
+        Refund Policy
+      </h2>
+
+      <p style={{ fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+        The refund amount shall be processed in the same mode of payment within 03 days of the cancellation date. The refund amount shall take 5-7 working days to reflect in your account.
+      </p>
+    </div>
+  );
+}
